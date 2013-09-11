@@ -1,15 +1,15 @@
+package trains;
+
 import java.util.*;
 
 /**
- * User: eceppda
- * Date: 9/5/13
- * Time: 10:59 AM
+ * Developer: Jeff HEmminger
  */
 public class Database {
 
     private final int maxSearchLength= 30;
-    private HashMap<String, Town> graph = new HashMap<String, Town>();
-    private PriorityQueue<Route> queue = new PriorityQueue<Route>();
+    private HashMap<String, Town> graph = new HashMap<>();
+    private PriorityQueue<Route> queue = new PriorityQueue<>();
 
     public Map<String, Town> getMap() {
         return this.graph;
@@ -19,32 +19,32 @@ public class Database {
 
         String[] towns = graph.split(",");
 
-        for(int i=0; i <towns.length; i++) {
+        for (String town3 : towns) {
 
-            String town = towns[i];
-            if(town.length() > 3) {
+            String town = town3;
+            if (town.length() > 3) {
                 town = town.substring(1);
             }
-            String town1 = town.substring(0,1);
-            String town2 = town.substring(1,2);
+            String town1 = town.substring(0, 1);
+            String town2 = town.substring(1, 2);
             Integer distance = Integer.valueOf(town.substring(2));
 
 //            System.out.printf("Path1: %s%n", town1 );
 //            System.out.printf("Town2: %s%n", town2 );
 //            System.out.printf("Distance: %s%n", distance );
 
-            Town t1 = null;
-            Town t2 = null;
+            Town t1;
+            Town t2;
 
-            if(this.graph.containsKey(town1)) {
-               t1 = this.graph.get(town1);
+            if (this.graph.containsKey(town1)) {
+                t1 = this.graph.get(town1);
 
             } else {
                 t1 = new Town(town1);
                 this.graph.put(town1, t1);
             }
 
-            if(this.graph.containsKey(town2)) {
+            if (this.graph.containsKey(town2)) {
                 t2 = this.graph.get(town2);
             } else {
                 t2 = new Town(town2);
@@ -140,18 +140,17 @@ public class Database {
 
             Set<Town> keys = neighbors.keySet();
 
-            Iterator<Town> iterator = keys.iterator();
+            for (Town t : keys) {
 
-            while (iterator.hasNext()) {
-
-                Town t = iterator.next();
                 int traveled = route.traveledDistance + neighbors.get(t);
-                queue.add(new Route(traveled, route.path + "-" + t.getName(), t));
+                StringBuilder builder = new StringBuilder();
+                builder.append(route.path).append("-").append(t.getName());
+                queue.add(new Route(traveled, builder.toString(), t));
                 if (t.getName().equals(destination.getName()) && traveled < distanceLimit) {
-                    route.path = route.path + "-" + t.getName();
+                    route.path = builder.toString();
                     route.traveledDistance = traveled;
                     answer.add(route);
-//                    System.out.println(p.path + t.getName());
+//                    System.out.println(builder.toString());
                 }
 
             }

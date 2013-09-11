@@ -1,7 +1,7 @@
+package trains;
+
 /**
- * User: eceppda
- * Date: 9/5/13
- * Time: 11:11 AM
+ * Developer: Jeff Hemminger
  */
 public class Route implements Comparable<Route> {
 
@@ -16,8 +16,8 @@ public class Route implements Comparable<Route> {
     }
 
     public int numberOfStops() {
-        String[] hops = path.split("[A-Z]");
-        return hops.length -1;
+        String[] stops = path.split("-");
+        return stops.length-1;
     }
 
     @Override

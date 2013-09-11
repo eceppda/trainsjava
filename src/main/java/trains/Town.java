@@ -1,9 +1,9 @@
+package trains;
+
 import java.util.HashMap;
 
 /**
- * User: eceppda
- * Date: 9/5/13
- * Time: 11:06 AM
+ * Developer: Jeff Hemminger
  */
 public class Town implements Comparable<Town> {
 

@@ -1,3 +1,5 @@
+package trains;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,9 +10,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * User: eceppda
- * Date: 9/5/13
- * Time: 11:59 AM
+ * Developer: Jeff Hemminger
+ *
+ * Unit tests for the train problem as described in the README.
  */
 public class TrainTest {
 
@@ -28,7 +30,6 @@ public class TrainTest {
         Set<String> keySet = townMap.keySet();
         assertEquals(5, keySet.size());
     }
-
 
     /**
      * 1. The distance of the route A-B-C.
